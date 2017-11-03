@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `band_tracker_test` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `band_tracker_test`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win32 (AMD64)
 --
 -- Host: localhost    Database: band_tracker_test
@@ -16,31 +18,45 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `bands`
+-- Table structure for table `bands`
 --
 
-LOCK TABLES `bands` WRITE;
-/*!40000 ALTER TABLE `bands` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bands` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `bands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bands` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `bands_venues`
+-- Table structure for table `bands_venues`
 --
 
-LOCK TABLES `bands_venues` WRITE;
-/*!40000 ALTER TABLE `bands_venues` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bands_venues` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `bands_venues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bands_venues` (
+  `band_id` int(11) DEFAULT NULL,
+  `venue_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `venues`
+-- Table structure for table `venues`
 --
 
-LOCK TABLES `venues` WRITE;
-/*!40000 ALTER TABLE `venues` DISABLE KEYS */;
-/*!40000 ALTER TABLE `venues` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `venues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `venues` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -51,4 +67,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-03  9:44:32
+-- Dump completed on 2017-11-03 16:45:06
