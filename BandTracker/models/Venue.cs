@@ -10,7 +10,10 @@ namespace BandTracker.Models
 		public int GetId() {return _id;}
 
 		private string _name;
-		public void SetName(string name) {_name = name;}
+		public void SetName(string name)
+		{
+			_name = name ?? "ERROR";
+		}
 		public string GetName() {return _name;}
 
 		public Venue(string name, int id = 0)

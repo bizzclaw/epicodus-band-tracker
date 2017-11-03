@@ -1,0 +1,14 @@
+@using BandTracker.Models
+
+@{
+  Layout = "_Layout";
+}
+
+<h1 class="text-center">Log band at @Model.GetName()</h1>
+<div class = "container">
+@foreach (Band band in Band.GetAll())
+	{
+		<a href="/venue/@Model.GetId()/post-band-log/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
+	}
+</div>
+<a href="/venues/@Model.GetId()"><button type="submit" class="btn btn-default btn-wide">Cancel</button></a>

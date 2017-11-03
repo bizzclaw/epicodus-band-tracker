@@ -1,0 +1,19 @@
+@using BandTracker.Models;
+
+@{
+  Layout = "_Layout";
+}
+
+<div class="jumbotron">
+  <h2>Venues</h2>
+</div>
+
+<div class="container">
+@foreach (Venue venue in Model)
+{
+  <a href="/venues/@venue.GetId()"><button type="submit" class="btn btn-default btn-wide">@venue.GetName()</button></a>
+}
+</div>
+
+<a href="/venues/new"><button type="submit" class="btn btn-default btn-wide">Add Venue</button></a>
+<a href="/"><button type="submit" class="btn btn-default btn-wide">Return</button></a>
