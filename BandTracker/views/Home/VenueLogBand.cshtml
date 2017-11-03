@@ -6,9 +6,9 @@
 
 <h1 class="text-center">Log band at @Model.GetName()</h1>
 <div class = "container">
-@foreach (Band band in Band.GetAll())
+@foreach (Band band in Model.GetBandLog(true))
 	{
-		<a href="/venue/@Model.GetId()/post-band-log/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
+		<a href="/venues/@Model.GetId()/post-band-log/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
 	}
 </div>
 <a href="/venues/@Model.GetId()"><button type="submit" class="btn btn-default btn-wide">Cancel</button></a>

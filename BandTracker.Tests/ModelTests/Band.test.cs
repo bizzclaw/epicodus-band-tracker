@@ -61,5 +61,22 @@ namespace BandTracker.Tests
 			newBand.Delete();
 			Assert.AreEqual(0, Band.GetCount());
 		}
+
+		[TestMethod]
+		public void getAllVenues_FindVenuesPlayedAt_1()
+		{
+			Venue newVenue = new Venue("A Cool Place");
+			newVenue.Save();
+
+			Band dummyVenue = new Band("NotCool Place");
+			dummyVenue.Save();
+
+			Band newBand = new Band("Cool Guys");
+			newBand.Save();
+
+			newVenue.LogBand(newBand);
+			List<Venue> venueLog = newBand.GetVenueLog();
+			Assert.AreEqual(1, venueLog.Count);
+		}
 	}
 }

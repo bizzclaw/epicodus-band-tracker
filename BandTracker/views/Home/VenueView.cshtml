@@ -19,14 +19,14 @@
     <h2>Band Log for this venue</h2>
     @foreach(Band band in Model.GetBandLog() )
     {
-      <div class="row">
-        <div class="col-md-10">
+      /*<div class="row">
+        <div class="col-md-10">*/
           <a href="/bands/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
+        /*</div>*/
+        /*<div class="col-md-2">
+          <a href="/venues/un-log-band/@Model.GetId()/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">Forget</button></a>
         </div>
-        <div class="col-md-2">
-          <a href="/venues/removeband/@Model.GetId()/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">Forget</button></a>
-        </div>
-      </div>
+      </div>*/
     }
   }
   <a href="/venues/logband/@Model.GetId()"><button type="submit" class="btn btn-default btn-wide">Add Band to Log</button></a>

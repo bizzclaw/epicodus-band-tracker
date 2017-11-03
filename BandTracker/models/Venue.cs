@@ -123,7 +123,7 @@ namespace BandTracker.Models
 		public List<Band> GetBandLog()
 		{
 			Query getLog = new Query(@"
-				SELECT * FROM bands
+				SELECT bands.* FROM bands
 					JOIN (bands_venues)
 				    ON bands_venues.band_id = bands.id
 				WHERE bands_venues.venue_id = @venueId;

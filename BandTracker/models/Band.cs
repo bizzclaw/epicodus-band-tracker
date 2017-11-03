@@ -10,7 +10,7 @@ namespace BandTracker.Models
 		public int GetId() {return _id;}
 
 		private string _name;
-		public void SetName(string name) 
+		public void SetName(string name)
 		{
 			_name = name ?? "ERROR";
 		}
@@ -96,6 +96,25 @@ namespace BandTracker.Models
 				allBands.Add(newBand);
 			}
 			return allBands;
+		}
+
+		public List<Venue> GetVenueLog()
+		{
+			Query getLog = new Query(@"
+				SELECT venues.* FROM venues
+					JOIN (bands_venues)
+					ON bands_venues.venue_id = venues.id
+				WHERE bands_venues.band_id = @bandId;
+			");
+			getLog.AddParameter("@bandId", GetId().ToString());
+			var rdr = getLog.Read();
+			List<Venue> venueLog = new List<Venue> {};
+			while (rdr.Read())
+			{
+				Venue foundVenue = new Venue(rdr.GetString(1), rdr.GetInt32(0));
+				venueLog.Add(foundVenue);
+			}
+			return venueLog;
 		}
 	}
 }

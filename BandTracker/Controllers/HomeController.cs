@@ -74,6 +74,7 @@ namespace BandTracker.Controllers
 			return View(Venue.Find(id));
 		}
 
+
 		[HttpGet("/venues/{venueId}/post-band-log/{bandId}")]
 		public ActionResult PostVenueLogBand(int venueId, int bandId)
 		{
