@@ -8,11 +8,19 @@
   <h1>Bands</h1>
 </div>
 
-<div class="container">
-@foreach (Band band in Model)
-{
-  <a href="/bands/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
-}
+<div class="container text-center">
+
+  @if (Model.Count < 1)
+  {
+    <h2>No Venues Entered</h2>
+  }
+  else
+  {
+    foreach (Band band in Model)
+    {
+      <a href="/bands/@band.GetId()"><button type="submit" class="btn btn-default btn-wide">@band.GetName()</button></a>
+    }
+  }
 </div>
 
 <a href="/bands/new"><button type="submit" class="btn btn-success btn-wide">Add Band</button></a>

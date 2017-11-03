@@ -8,11 +8,20 @@
   <h1>Venues</h1>
 </div>
 
-<div class="container">
-@foreach (Venue venue in Model)
-{
-  <a href="/venues/@venue.GetId()"><button type="submit" class="btn btn-default btn-wide">@venue.GetName()</button></a>
-}
+<div class="container text-center">
+
+  @if (Model.Count < 1)
+  {
+    <h2>No Venues Entered</h2>
+  }
+  else
+  {
+    foreach (Venue venue in Model)
+    {
+      <a href="/venues/@venue.GetId()"><button type="submit" class="btn btn-default btn-wide">@venue.GetName()</button></a>
+    }
+  }
+
 </div>
 
 <a href="/venues/new"><button type="submit" class="btn btn-success btn-wide">Add Venue</button></a>
