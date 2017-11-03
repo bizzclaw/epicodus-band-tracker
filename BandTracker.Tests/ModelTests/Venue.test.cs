@@ -16,6 +16,7 @@ namespace BandTracker.Tests
 		public void Dispose()
 		{
 			Venue.ClearAll();
+			Band.ClearAll();
 		}
 
 
@@ -59,6 +60,23 @@ namespace BandTracker.Tests
 
 			newVenue.Delete();
 			Assert.AreEqual(0, Venue.GetCount());
+		}
+
+		[TestMethod]
+		public void LogBandAndGetBandLog_LogBandInVenueAndGetItFromLog_1()
+		{
+			Venue newVenue = new Venue("A Cool Place");
+			newVenue.Save();
+
+			Band dummyBand = new Band("NotCool Guys");
+			dummyBand.Save();
+
+			Band newBand = new Band("Cool Guys");
+			newBand.Save();
+
+			newVenue.LogBand(newBand);
+			List<Band> bandLog = newVenue.GetBandLog();
+			Assert.AreEqual(1, bandLog.Count);
 		}
 	}
 }

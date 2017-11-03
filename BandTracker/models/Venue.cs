@@ -40,6 +40,7 @@ namespace BandTracker.Models
 
 		public static void ClearAll()
 		{
+			ClearAllBandLogs();
 			Query clearVenues = new Query("DELETE FROM venues");
 			clearVenues.Execute();
 		}
@@ -93,6 +94,46 @@ namespace BandTracker.Models
 				allVenues.Add(newVenue);
 			}
 			return allVenues;
+		}
+
+		public static void ClearAllBandLogs()
+		{
+			Query clearBandLogs = new Query("DELETE FROM bands_venues");
+			clearBandLogs.Execute();
+		}
+
+		public void ClearBandLog()
+		{
+			Query clearBandLog = new Query("DELETE FROM bands_venues WHERE venue_id = @venueId)");
+			clearBandLog.AddParameter("@venueId", GetId().ToString());
+			clearBandLog.Execute();
+		}
+
+		public void LogBand(Band band)
+		{
+			Query logBand = new Query("INSERT INTO bands_venues VALUES (@bandId, @venueId)");
+			logBand.AddParameter("@bandId", band.GetId().ToString());
+			logBand.AddParameter("@venueId", GetId().ToString());
+			logBand.Execute();
+		}
+
+		public List<Band> GetBandLog()
+		{
+			Query getLog = new Query(@"
+				SELECT * FROM bands
+					JOIN (bands_venues)
+				    ON bands_venues.band_id = bands.id
+				WHERE bands_venues.venue_id = @venueId;
+			");
+			getLog.AddParameter("@venueId", GetId().ToString());
+			var rdr = getLog.Read();
+			List<Band> bandLog = new List<Band> {};
+			while (rdr.Read())
+			{
+				Band foundBand = new Band(rdr.GetString(1), rdr.GetInt32(0));
+				bandLog.Add(foundBand);
+			}
+			return bandLog;
 		}
 	}
 }
