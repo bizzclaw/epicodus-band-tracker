@@ -22,7 +22,7 @@ namespace BandTracker.Tests
 		[TestMethod]
 		public void Save_SavesBandToDatabase_1()
 		{
-			Band newBand = new Band("Carpentry: Chainsaw Maintenance");
+			Band newBand = new Band("The Beatles");
 			newBand.Save();
 
 			Assert.AreEqual(1, Band.GetCount());
@@ -31,7 +31,7 @@ namespace BandTracker.Tests
 		[TestMethod]
 		public void Find_FindsBandInDatabase_True()
 		{
-			Band newBand = new Band("Metalworking: Stakes and More");
+			Band newBand = new Band("The Ink Spots");
 			newBand.Save();
 
 			Band foundBand = Band.Find(newBand.GetId());
@@ -41,20 +41,20 @@ namespace BandTracker.Tests
 		[TestMethod]
 		public void Update_UpdatesBandInformationInDatabase_false()
 		{
-			Band newBand = new Band("Dark Psychology: Fight Your Demons");
+			Band newBand = new Band("Some Band");
 			newBand.Save();
 
-			newBand.SetName("Dark Psychology: How to Love Your Demons");
+			newBand.SetName("Not Just Some Band");
 			newBand.Update();
 
 			Band foundBand = Band.Find(newBand.GetId());
-			Assert.AreNotEqual(foundBand.GetName(), "Dark Psychology: Fight Your Demons");
+			Assert.AreNotEqual(foundBand.GetName(), "Some Band");
 		}
 
 		[TestMethod]
 		public void Delete_DeletesABandFromDatabase_0()
 		{
-			Band newBand = new Band("Career Planning: Beyond the Knife");
+			Band newBand = new Band("Deletables");
 			newBand.Save();
 
 			newBand.Delete();
