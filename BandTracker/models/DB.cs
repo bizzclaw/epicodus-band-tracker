@@ -7,8 +7,8 @@ namespace BandTracker.Models
 	{
 		public static void DatabaseTest()
 		{
-			DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=3306;database=band_tracker_test;";
-			// DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
+			// DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=3306;database=band_tracker_test;";
+			DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=band_tracker_test;";
 		}
 
 		public static MySqlConnection Connection()
