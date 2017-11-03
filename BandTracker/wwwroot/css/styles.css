@@ -29,3 +29,9 @@ body {
   border-color: lightblue;
   color: lightblue;
 }
+
+.btn-success:hover {
+  background-color: black;
+  border-color: lightgreen;
+  color: lightgreen;
+}

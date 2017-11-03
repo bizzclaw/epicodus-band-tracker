@@ -1,12 +1,27 @@
+@using BandTracker.Models;
+
 @{
   Layout = "_Layout";
 }
 
 <div class="jumbotron">
 	<h1>@Model.GetName()</h1>
+  <h3>Id: @Model.GetId()</h3>
 </div>
 
-<h3>Id: @Model.GetId()</h3>
+<div class="container text-center">
+  @if (@Model.GetVenueLog().Count < 1)
+  {
+    <h2>This band has not played at any venues</h2>
+  }
+  else
+  {
+    <h2>This band has played at the following venues:</h2>
+    foreach (Venue playedVenue in Model.GetVenueLog())
+    {
+      <a href="/venues/@playedVenue.GetId()"><button type="submit" class="btn btn-default btn-wide">@playedVenue.GetName()</button></a>
+    }
+  }
+</div>
 
-<p>This band is entered into the Database</p>
 <a href="/bands"><button type="submit" class="btn btn-default btn-wide">Back to Bands</button></a>

@@ -74,7 +74,7 @@ namespace BandTracker.Models
 
 		public static void DeleteById(int id)
 		{
-			Query deleteVenue = new Query("DELETE FROM venues WHERE id = @venueId");
+			Query deleteVenue = new Query("DELETE FROM venues WHERE id = @venueId; DELETE FROM bands_venues WHERE venue_id = @venueId");
 			deleteVenue.AddParameter("@venueId", id.ToString());
 			deleteVenue.Execute();
 		}

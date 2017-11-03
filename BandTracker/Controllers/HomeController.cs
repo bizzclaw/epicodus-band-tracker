@@ -40,6 +40,13 @@ namespace BandTracker.Controllers
 			return View(Band.Find(id));
 		}
 
+		[HttpGet("/bands/delete/{id}")]
+		public ActionResult BandDelete(int id)
+		{
+			Band.DeleteById(id);
+			return View("Bands", Band.GetAll());
+		}
+
 		[HttpGet("/venues")]
 		public ActionResult Venues()
 		{
@@ -58,14 +65,20 @@ namespace BandTracker.Controllers
 			string name = Request.Form["venue-name"];
 			Venue newVenue = new Venue(name);
 			newVenue.Save();
-			List<Venue> allVenues = Venue.GetAll();
-			return View("Venues", allVenues);
+			return View("Venues", Venue.GetAll());
 		}
 
 		[HttpGet("/venues/{id}")]
 		public ActionResult VenueView(int id)
 		{
 			return View(Venue.Find(id));
+		}
+
+		[HttpGet("/venues/delete/{id}")]
+		public ActionResult VenueDelete(int id)
+		{
+			Venue.DeleteById(id);
+			return View("Venues", Venue.GetAll());
 		}
 
 		[HttpGet("/venues/logband/{id}")]
