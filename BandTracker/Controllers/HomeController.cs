@@ -25,7 +25,7 @@ namespace BandTracker.Controllers
 			return View();
 		}
 
-		[HttpPost("/bands/postnew")]
+		[HttpPost("/bands/new")]
 		public ActionResult PostBand()
 		{
 			Band newBand = new Band(Request.Form["band-name"]);
@@ -34,13 +34,23 @@ namespace BandTracker.Controllers
 			return View("Bands", allBands);
 		}
 
+		[HttpPost("/bands/{id}/update")]
+		public ActionResult UpdateBand(int id = 0)
+		{
+			Band updateBand = Band.Find(id);
+			string name = Request.Form["band-name"];
+			updateBand.SetName(name ?? updateBand.GetName()); // falls back to current name if new one can't be resolved
+			updateBand.Update();
+			return View("BandView", updateBand);
+		}
+
 		[HttpGet("/bands/{id}")]
 		public ActionResult BandView(int id)
 		{
 			return View(Band.Find(id));
 		}
 
-		[HttpGet("/bands/delete/{id}")]
+		[HttpGet("/bands/{id}/delete")]
 		public ActionResult BandDelete(int id)
 		{
 			Band.DeleteById(id);
@@ -59,7 +69,7 @@ namespace BandTracker.Controllers
 			return View();
 		}
 
-		[HttpPost("/venues/postnew")]
+		[HttpPost("/venues/new")]
 		public ActionResult PostVenue()
 		{
 			string name = Request.Form["venue-name"];
@@ -68,27 +78,38 @@ namespace BandTracker.Controllers
 			return View("Venues", Venue.GetAll());
 		}
 
+
 		[HttpGet("/venues/{id}")]
 		public ActionResult VenueView(int id)
 		{
 			return View(Venue.Find(id));
 		}
 
-		[HttpGet("/venues/delete/{id}")]
+		[HttpPost("/venues/{id}/update")]
+		public ActionResult UpdateVenue(int id = 0)
+		{
+			Venue updateVenue = Venue.Find(id);
+			string name = Request.Form["venue-name"];
+			updateVenue.SetName(name ?? updateVenue.GetName());
+			updateVenue.Update();
+			return View("VenueView", updateVenue);
+		}
+
+		[HttpGet("/venues/{id}/delete")]
 		public ActionResult VenueDelete(int id)
 		{
 			Venue.DeleteById(id);
 			return View("Venues", Venue.GetAll());
 		}
 
-		[HttpGet("/venues/logband/{id}")]
+		[HttpGet("/venues/{id}/bandlog")]
 		public ActionResult VenueLogBand(int id)
 		{
 			return View(Venue.Find(id));
 		}
 
 
-		[HttpGet("/venues/{venueId}/post-band-log/{bandId}")]
+		[HttpGet("/venues/{venueId}/bandlog/add/{bandId}")]
 		public ActionResult PostVenueLogBand(int venueId, int bandId)
 		{
 			Band loggedBand = Band.Find(bandId);

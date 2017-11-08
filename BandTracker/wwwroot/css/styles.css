@@ -13,9 +13,10 @@ body {
 }
 
 .btn-wide {
-  width: 100%;
+  width: 98%;
   font-size: 24px;
-	margin: 20px
+	margin-bottom: 20px;
+  margin-left: 1%;
 }
 
 .btn-default {
@@ -34,4 +35,19 @@ body {
   background-color: black;
   border-color: lightgreen;
   color: lightgreen;
+}
+
+.titlebox {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 65px;
+  height: 80px;
+  color: black;
+  border-style: none;
+  border-top-style: none;
+  width: 50%;
+  margin-left: 25%;
+}
+.titlebox:hover {
+  background-color: rgba(255, 255, 255, 0.6);
 }
